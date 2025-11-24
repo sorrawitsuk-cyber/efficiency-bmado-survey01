@@ -1,0 +1,433 @@
+
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบสอบถามงานวิจัยสำนักดิจิทัล กทม.</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Sarabun) -->
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Sarabun', sans-serif; }
+        .likert-radio:checked + label {
+            background-color: #2563EB;
+            color: white;
+            border-color: #2563EB;
+        }
+        .likert-radio:focus + label {
+            box-shadow: 0 0 0 2px #93C5FD;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-animate {
+            animation: fadeIn 0.3s ease-out;
+        }
+        /* Loading Overlay */
+        .loader {
+            border-top-color: #3498db;
+            -webkit-animation: spinner 1.5s linear infinite;
+            animation: spinner 1.5s linear infinite;
+        }
+        @keyframes spinner {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <h1 class="text-xl md:text-2xl font-bold">แบบสอบถามงานวิจัย</h1>
+            <p class="text-sm md:text-base text-blue-200">ประสิทธิภาพในการปฏิบัติงานด้านดิจิทัลของข้าราชการสำนักดิจิทัลกรุงเทพมหานคร</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6 border-l-4 border-blue-500">
+            <h2 class="text-lg font-bold mb-2 text-blue-800">คำชี้แจง</h2>
+            <p class="mb-2 text-sm text-gray-600">แบบสอบถามนี้จัดทำขึ้นเพื่อการศึกษา ข้อมูลของท่านจะถูกเก็บเป็นความลับและนำเสนอในภาพรวมเท่านั้น</p>
+            <p class="text-sm text-gray-600"><strong>โปรดตอบให้ครบทุกข้อตามความเป็นจริง</strong></p>
+        </div>
+
+        <form id="researchForm" name="researchForm" onsubmit="submitForm(event)">
+            
+            <!-- ส่วนที่ 1: ข้อมูลส่วนบุคคล -->
+            <section class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                <h2 class="text-xl font-bold mb-6 pb-2 border-b text-gray-700 flex items-center">
+                    <span class="bg-blue-100 text-blue-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">ส่วนที่ 1</span>
+                    ข้อมูลส่วนบุคคล
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- 1. เพศ -->
+                    <div>
+                        <label class="block font-semibold mb-2 text-sm">1. เพศ <span class="text-red-500">*</span></label>
+                        <select name="gender" class="w-full border-gray-300 rounded-md shadow-sm border p-2 bg-gray-50" required>
+                            <option value="">-- เลือก --</option>
+                            <option value="male">ชาย</option>
+                            <option value="female">หญิง</option>
+                        </select>
+                    </div>
+
+                    <!-- 2. อายุ -->
+                    <div>
+                        <label class="block font-semibold mb-2 text-sm">2. อายุ <span class="text-red-500">*</span></label>
+                        <select name="age_range" class="w-full border-gray-300 rounded-md shadow-sm border p-2 bg-gray-50" required>
+                            <option value="">-- เลือกช่วงอายุ --</option>
+                            <option value="under_20">ต่ำกว่า 20 ปี</option>
+                            <option value="21_30">21 - 30 ปี</option>
+                            <option value="31_40">31 - 40 ปี</option>
+                            <option value="41_50">41 - 50 ปี</option>
+                            <option value="51_60">51 - 60 ปี</option>
+                            <option value="above_60">มากกว่า 60 ปี</option>
+                        </select>
+                    </div>
+
+                    <!-- 3. การศึกษา -->
+                    <div>
+                        <label class="block font-semibold mb-2 text-sm">3. ระดับการศึกษาสูงสุด <span class="text-red-500">*</span></label>
+                        <select name="education" class="w-full border-gray-300 rounded-md shadow-sm border p-2 bg-gray-50" required>
+                            <option value="">-- เลือก --</option>
+                            <option value="below_bachelor">ต่ำกว่าปริญญาตรี</option>
+                            <option value="bachelor">ปริญญาตรี</option>
+                            <option value="above_bachelor">สูงกว่าปริญญาตรี</option>
+                        </select>
+                    </div>
+
+                     <!-- 4. ระดับตำแหน่ง -->
+                     <div>
+                        <label class="block font-semibold mb-2 text-sm">4. ระดับตำแหน่ง (ถ้ามี)</label>
+                        <select name="position_level" class="w-full border-gray-300 rounded-md shadow-sm border p-2 bg-gray-50">
+                            <option value="">-- เลือก --</option>
+                            <option value="operational">ปฏิบัติงาน</option>
+                            <option value="practitioner">ปฏิบัติการ</option>
+                            <option value="experienced">ชำนาญงาน</option>
+                            <option value="professional">ชำนาญการ</option>
+                            <option value="senior">อาวุโส</option>
+                            <option value="senior_professional">ชำนาญการพิเศษ</option>
+                            <option value="other">อื่นๆ</option>
+                        </select>
+                    </div>
+
+                    <!-- 5. อายุราชการ -->
+                    <div>
+                        <label class="block font-semibold mb-2 text-sm">5. อายุราชการ/ประสบการณ์ <span class="text-red-500">*</span></label>
+                        <select name="experience_years" class="w-full border-gray-300 rounded-md shadow-sm border p-2 bg-gray-50" required>
+                            <option value="">-- เลือก --</option>
+                            <option value="less_5">น้อยกว่า 5 ปี</option>
+                            <option value="5_10">5 - 10 ปี</option>
+                            <option value="11_15">11 - 15 ปี</option>
+                            <option value="16_20">16 - 20 ปี</option>
+                            <option value="more_20">มากกว่า 20 ปี</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 6. สายงานหลัก -->
+                <div class="mt-6 bg-blue-50 p-4 rounded-md border border-blue-200">
+                    <label class="block font-semibold mb-2 text-blue-900">6. สายงานหลักที่ท่านปฏิบัติงานในปัจจุบัน <span class="text-red-500">*</span></label>
+                    <p class="text-xs text-gray-500 mb-3">(ใช้เพื่อจำแนกกลุ่มบทบาทตามกรอบทักษะดิจิทัล)</p>
+                    <div class="space-y-3 text-sm">
+                        <label class="flex items-start space-x-2 cursor-pointer hover:bg-blue-100 p-2 rounded transition">
+                            <input type="radio" name="job_role" value="technologist" class="mt-1 form-radio text-blue-600" required> 
+                            <div>
+                                <span class="font-bold">1. สายงานด้านเฉพาะเทคโนโลยี (Technologist)</span><br>
+                                <span class="text-gray-600 text-xs">(นักวิชาการคอมพิวเตอร์ เจ้าหน้าที่ระบบ)</span>
+                            </div>
+                        </label>
+                        <label class="flex items-start space-x-2 cursor-pointer hover:bg-blue-100 p-2 rounded transition">
+                            <input type="radio" name="job_role" value="academic" class="mt-1 form-radio text-blue-600"> 
+                            <div>
+                                <span class="font-bold">2. สายงานด้านนโยบายและวิชาการ (Academic)</span><br>
+                                <span class="text-gray-600 text-xs">(นักวิเคราะห์นโยบายและแผน นิติกร นักวิชาการแผนที่)</span>
+                            </div>
+                        </label>
+                        <label class="flex items-start space-x-2 cursor-pointer hover:bg-blue-100 p-2 rounded transition">
+                            <input type="radio" name="job_role" value="support" class="mt-1 form-radio text-blue-600"> 
+                            <div>
+                                <span class="font-bold">3. สายงานด้านสนับสนุนและอื่นๆ (Others)</span><br>
+                                <span class="text-gray-600 text-xs">(นักจัดการงานทั่วไป / นักทรัพยากรบุคคล / เจ้าพนักงานธุรการ / เจ้าพนักงานพัสดุ / การเงินและบัญชี / โสตทัศนศึกษา / นายช่างไฟฟ้า)</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ส่วนที่ 2: ทักษะด้านดิจิทัล -->
+            <section class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b pb-4">
+                    <h2 class="text-xl font-bold text-gray-700 flex items-center">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">ส่วนที่ 2</span>
+                        ทักษะด้านดิจิทัลที่จำเป็น
+                    </h2>
+                    <div class="text-xs text-gray-500 mt-2 md:mt-0 bg-gray-100 px-3 py-1 rounded-full">
+                        5 = มากที่สุด | 1 = น้อยที่สุด
+                    </div>
+                </div>
+
+                <h3 class="font-bold text-lg text-blue-700 mb-4 bg-blue-50 p-2 rounded">2.1 ด้านความสามารถ (Capability)</h3>
+                <div id="section2_1_container"></div>
+
+                <h3 class="font-bold text-lg text-blue-700 mb-4 mt-8 bg-blue-50 p-2 rounded">2.2 ด้านความรู้ (Knowledge)</h3>
+                <div id="section2_2_container"></div>
+
+                <h3 class="font-bold text-lg text-blue-700 mb-4 mt-8 bg-blue-50 p-2 rounded">2.3 ด้านประสบการณ์ (Experience)</h3>
+                <div id="section2_3_container"></div>
+
+                <h3 class="font-bold text-lg text-blue-700 mb-4 mt-8 bg-blue-50 p-2 rounded">2.4 ด้านคุณลักษณะ (Attribute)</h3>
+                <div id="section2_4_container"></div>
+            </section>
+
+            <!-- ส่วนที่ 3: ประสิทธิภาพ -->
+            <section class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b pb-4">
+                    <h2 class="text-xl font-bold text-gray-700 flex items-center">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">ส่วนที่ 3</span>
+                        ประสิทธิภาพการปฏิบัติงาน
+                    </h2>
+                    <div class="text-xs text-gray-500 mt-2 md:mt-0 bg-gray-100 px-3 py-1 rounded-full">
+                        5 = เห็นด้วยมากที่สุด | 1 = เห็นด้วยน้อยที่สุด
+                    </div>
+                </div>
+
+                <h3 class="font-bold text-lg text-green-700 mb-4 bg-green-50 p-2 rounded">3.1 ด้านปริมาณงาน (Quantity)</h3>
+                <div id="section3_1_container"></div>
+
+                <h3 class="font-bold text-lg text-green-700 mb-4 mt-8 bg-green-50 p-2 rounded">3.2 ด้านคุณภาพงาน (Quality)</h3>
+                <div id="section3_2_container"></div>
+
+                <h3 class="font-bold text-lg text-green-700 mb-4 mt-8 bg-green-50 p-2 rounded">3.3 ด้านความรวดเร็ว (Speed)</h3>
+                <div id="section3_3_container"></div>
+
+                <h3 class="font-bold text-lg text-green-700 mb-4 mt-8 bg-green-50 p-2 rounded">3.4 ด้านความประหยัด (Economy)</h3>
+                <div id="section3_4_container"></div>
+            </section>
+
+            <!-- ส่วนที่ 4: ข้อเสนอแนะ -->
+            <section class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                <h2 class="text-xl font-bold mb-6 pb-2 border-b text-gray-700 flex items-center">
+                    <span class="bg-blue-100 text-blue-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">ส่วนที่ 4</span>
+                    ข้อเสนอแนะเพิ่มเติม
+                </h2>
+                <div class="mb-4">
+                    <label class="block font-semibold mb-2 text-sm text-gray-600">ความคิดเห็นหรือข้อเสนอแนะเกี่ยวกับการพัฒนาทักษะดิจิทัลและการเพิ่มประสิทธิภาพในการปฏิบัติงาน</label>
+                    <textarea name="suggestions" rows="4" class="w-full border-gray-300 rounded-md shadow-sm border p-3 focus:ring-blue-500 focus:border-blue-500" placeholder="ระบุข้อเสนอแนะของท่าน (ถ้ามี)..."></textarea>
+                </div>
+            </section>
+
+            <!-- ปุ่มส่งข้อมูล -->
+            <div class="text-center mb-12">
+                <button type="submit" id="submitBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-full shadow-lg transition duration-300 transform hover:scale-105 flex items-center mx-auto">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    ยืนยันการส่งแบบสอบถาม
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <!-- Loading Modal -->
+    <div id="loadingModal" class="fixed inset-0 bg-black bg-opacity-60 hidden flex items-center justify-center z-50">
+        <div class="bg-white p-6 rounded-lg shadow-xl flex flex-col items-center">
+            <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4"></div>
+            <p class="text-gray-700 font-semibold">กำลังบันทึกข้อมูล...</p>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-60 hidden flex items-center justify-center z-50 modal-animate">
+        <div class="bg-white p-8 rounded-xl shadow-2xl max-w-sm w-full text-center border-t-4 border-green-500">
+            <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6">
+                <svg class="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h3 class="text-xl leading-6 font-bold text-gray-900 mb-2">บันทึกข้อมูลเรียบร้อย</h3>
+            <p class="text-sm text-gray-500">ขอบคุณสำหรับความอนุเคราะห์ในการตอบแบบสอบถาม</p>
+            <div class="mt-8">
+                <button onclick="closeModal()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-3 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                    ปิดหน้าต่าง
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA SECTION: ข้อมูลคำถาม ---
+        const questions2_1 = [
+            "ท่านสามารถประยุกต์ใช้เครื่องมือดิจิทัลพื้นฐาน (เช่น MS Office, Google Workspace, Email) เพื่อเพิ่มประสิทธิภาพในการทำงานประจำ",
+            "ท่านมีความสามารถในการจัดทำชุดข้อมูลของหน่วยงานให้อยู่ในรูปแบบข้อมูลเปิด (Open Public Data) ตามมาตรฐานที่กำหนด",
+            "ท่านมีความสามารถในการใช้ข้อมูลระหว่างหน่วยงาน โดยสามารถเชื่อมโยงและกำหนดมาตรฐานข้อมูลเพื่อการแลกเปลี่ยน",
+            "ท่านมีความสามารถในการใช้โปรแกรมดิจิทัลเพื่อวิเคราะห์ข้อมูลพื้นฐาน (เช่น Aggregate Function, จัดกลุ่มข้อมูล)",
+            "ท่านสามารถปฏิบัติตามกฎหมายและกรอบธรรมาภิบาลดิจิทัล (เช่น PDPA, พ.ร.บ. ไซเบอร์) ในการปฏิบัติงานได้อย่างถูกต้อง",
+            "ท่านสามารถปฏิบัติงานและให้บริการตามข้อตกลงระดับการให้บริการ (SLA) ที่หน่วยงานกำหนด",
+            "ท่านมีความสามารถในการประเมินและบริหารจัดการความเสี่ยงด้านดิจิทัล (Digital Risk Management)",
+            "ท่านมีความสามารถในการวิเคราะห์ข้อมูลขั้นสูง (Data Analytics) เพื่อตีความ วิเคราะห์ความสัมพันธ์ และหาข้อสรุป",
+            "ท่านมีความสามารถในการออกแบบนวัตกรรมบริการ โดยเข้าใจและอธิบายประสบการณ์ของผู้รับบริการ (UX & User Journey)",
+            "ท่านมีความสามารถในการบริหารจัดการประสิทธิภาพการให้บริการดิจิทัล โดยการกำหนดตัวชี้วัด (KPIs) และวิเคราะห์แนวโน้ม",
+            "ท่านมีความสามารถในการริเริ่มและวางแผนโครงการดิจิทัล รวมถึงการจัดการผู้มีส่วนเกี่ยวข้อง",
+            "ท่านมีความสามารถในการพัฒนาหรือสนับสนุนการพัฒนาบุคลากรอื่น ให้มีทักษะที่พร้อมสำหรับวัฒนธรรมการทำงานแบบดิจิทัล",
+            "ท่านมีส่วนร่วมในการบริหารจัดการกระบวนการเปลี่ยนแปลงสู่องค์กรดิจิทัล (Digital Transformation)"
+        ];
+
+        const questions2_2 = [
+            "ท่านมีความรู้ด้านการใช้งานเทคโนโลยีอย่างปลอดภัย (Cyber Security) และตระหนักถึงประเด็นความเป็นส่วนตัวและจริยธรรม",
+            "ท่านมีความรู้เกี่ยวกับหลักการสำคัญเกี่ยวกับข้อมูล (Data Literacy) และการเลือกใช้และการตีความข้อมูล",
+            "ท่านมีความรู้เกี่ยวกับเป้าหมาย พันธกิจ และกระบวนการทำงาน/บริการ ของสำนักดิจิทัลกรุงเทพมหานคร",
+            "ท่านมีความรู้เกี่ยวกับทิศทาง นโยบาย และยุทธศาสตร์ดิจิทัลของประเทศ และความเชื่อมโยงกับภารกิจของ กทม.",
+            "ท่านมีความรู้เกี่ยวกับสถาปัตยกรรมองค์กร (Enterprise Architecture) และการกำกับดูแล",
+            "ท่านมีความรู้ด้านการจัดการโครงการ (Project Management) ในบริบทดิจิทัล",
+            "ท่านมีความรู้เกี่ยวกับการบริหารจัดการ วิเคราะห์ และสังเคราะห์ข้อมูล เพื่อการวางแผนและการตัดสินใจ",
+            "ท่านมีความรู้เกี่ยวกับการทำงานและประยุกต์ใช้งานแบบอไจล์ (Agile Methodology)",
+            "ท่านมีความรู้ด้านการจัดการความเสี่ยงดิจิทัล (Digital Risk Management)",
+            "ท่านมีความรู้ด้านการจัดการการให้บริการด้านไอที (IT Service Management - ITSM)"
+        ];
+
+        const questions2_3 = [
+            "ท่านมีประสบการณ์การใช้งานดิจิทัลในการทำงานและในชีวิตประจำวันอย่างถูกต้องและปลอดภัย",
+            "ท่านมีประสบการณ์การใช้และตีความข้อมูลเพื่อการทำงาน หรือการตัดสินใจ",
+            "ท่านมีประสบการณ์ในการรวบรวม วิเคราะห์ และสื่อสารข้อมูลความต้องการใช้งาน (User Requirements)",
+            "ท่านมีประสบการณ์การประสานความร่วมมือหรือทำงานแบบเป็นเครือข่ายกับหน่วยงานอื่น",
+            "ท่านมีประสบการณ์การใช้ข้อมูลเพื่อการวิเคราะห์และสังเคราะห์ หรือเพื่อนำเสนอต่อผู้บริหาร",
+            "ท่านมีประสบการณ์การทำงานบริหารจัดการ ควบคุม หรือกำกับ โครงการดิจิทัลของหน่วยงาน",
+            "ท่านมีประสบการณ์การวิเคราะห์และออกแบบสถาปัตยกรรมองค์กร (Enterprise Architecture)",
+            "ท่านมีประสบการณ์การบริหารจัดการระบบ IT ขององค์กร หรือการพัฒนาซอฟต์แวร์"
+        ];
+
+        const questions2_4 = [
+            "ท่านเป็นผู้ที่มุ่งเป้าหมายในการทำงาน สามารถคิดวิเคราะห์ และแก้ไขปัญหาที่ซับซ้อนได้",
+            "ท่านเป็นผู้ที่เปิดรับประสบการณ์หรือเทคโนโลยีใหม่ ริเริ่ม สร้างสรรค์ และเรียนรู้สิ่งใหม่ๆ ได้ด้วยตนเอง",
+            "ท่านเป็นผู้ที่สามารถสื่อสารและทำงานร่วมกับผู้อื่น (เช่น ทีมงานต่างสายงาน) ได้อย่างมีประสิทธิภาพ",
+            "ท่านเป็นผู้ที่กล้าตัดสินใจในงานที่รับผิดชอบ พร้อมรับความเสี่ยงที่อาจเกิดขึ้น และรับผิดชอบต่อผลการตัดสินใจ",
+            "ท่านเป็นผู้ที่มีคุณธรรมและจริยธรรมในการปฏิบัติงานและการใช้เทคโนโลยีดิจิทัล (เช่น การเคารพข้อมูลส่วนบุคคล)"
+        ];
+
+        const questions3_1 = [
+            "ท่านสามารถปฏิบัติงานได้สำเร็จตามปริมาณงานที่ได้รับมอบหมายในแต่ละวันหรือแต่ละรอบการประเมิน",
+            "ท่านสามารถบริหารจัดการงานในความรับผิดชอบ ไม่ให้เกิดงานคั่งค้าง โดยใช้เครื่องมือดิจิทัลช่วยในการติดตาม",
+            "ท่านมีความเข้าใจในการเชื่อมโยงเทคโนโลยีเข้ากับกระบวนการปฏิบัติงาน เพื่อให้ได้ผลงานในปริมาณที่กำหนด",
+            "ท่านสามารถให้บริการหรือแก้ไขปัญหาแก่ผู้รับบริการ (ทั้งหน่วยงานภายในและภายนอก) ได้ครบถ้วนตามเป้าหมายเชิงปริมาณ"
+        ];
+
+        const questions3_2 = [
+            "ผลการปฏิบัติงานของท่าน (เช่น รายงาน, โค้ดโปรแกรม, แผนงาน) เป็นไปตามหลักเกณฑ์ มาตรฐาน และขั้นตอนที่กำหนด",
+            "ท่านยึดหลักความถูกต้องตามระเบียบ กฎหมาย และจรรยาบรรณ (เช่น ด้านข้อมูล, การจัดซื้อจัดจ้าง) ในการปฏิบัติงาน",
+            "ท่านมีการวางแผนและจัดระบบงานโดยนำเทคโนโลยีมาช่วย ทำให้ผลงานมีความถูกต้อง สมบูรณ์ และตรวจสอบย้อนกลับได้",
+            "ผลงานดิจิทัลที่ท่านจัดทำขึ้นมีคุณภาพ และมีความผิดพลาดน้อย (Low Error Rate)"
+        ];
+
+        const questions3_3 = [
+            "ท่านสามารถปฏิบัติงานได้แล้วเสร็จตรงตามกรอบระยะเวลา (Timeline) หรือกำหนดการ (Deadline) ที่กำหนด",
+            "ท่านสามารถให้บริการหรือตอบสนองต่อความต้องการของผู้รับบริการได้อย่างรวดเร็วผ่านช่องทางดิจิทัล",
+            "ท่านมีความเข้าใจในระบบงานและขั้นตอนการปฏิบัติงานดิจิทัล (Digital Workflow) ทำให้สามารถทำงานได้อย่างคล่องตัว",
+            "ท่านสามารถปฏิบัติงานตามหนังสือสั่งการ หรือข้อสั่งการที่เกี่ยวข้องกับเทคโนโลยี ได้อย่างทันท่วงที"
+        ];
+
+        const questions3_4 = [
+            "ท่านใช้ทรัพยากรของหน่วยงาน (เช่น เวลา, งบประมาณ, อุปกรณ์) ที่มีอยู่อย่างจำกัดได้อย่างคุ้มค่าและเกิดประโยชน์สูงสุด",
+            "ท่านพยายามปรับปรุงการปฏิบัติงานเพื่อลดขั้นตอนและความซ้ำซ้อน (Redundancy) ในการใช้ทรัพยากร โดยการใช้ระบบดิจิทัล",
+            "ท่านมีการจัดสรรและใช้ทรัพยากรดิจิทัล (เช่น Software License, Cloud Storage) ที่มีอยู่อย่างเหมาะสมและประหยัด",
+            "การปฏิบัติงานของท่านสอดคล้องกับแผนงานและขั้นตอนที่มีประสิทธิภาพ ซึ่งช่วยลดต้นทุนการดำเนินงานขององค์กร"
+        ];
+
+        // --- FUNCTION SECTION ---
+
+        // ปรับปรุง: ให้แสดงเลขข้อเป็นจำนวนเต็ม (เช่น ข้อที่ 1, 2) แต่ input name ยังคง structure เดิมเพื่อไม่งงใน database
+        function createLikertQuestion(itemNumber, text, name) {
+            return `
+            <div class="mb-6 pb-4 border-b border-gray-100 last:border-0 hover:bg-gray-50 p-2 rounded transition">
+                <div class="flex flex-col md:flex-row md:items-start justify-between">
+                    <div class="md:w-3/5 pr-4 mb-3 md:mb-0">
+                         <span class="font-bold text-gray-500 text-sm block mb-1">ข้อที่ ${itemNumber}</span>
+                         <p class="text-gray-800 text-sm md:text-base leading-relaxed">${text}</p>
+                    </div>
+                    
+                    <div class="md:w-2/5 flex flex-col justify-center">
+                        <div class="flex justify-between items-center max-w-xs mx-auto w-full">
+                             ${[1, 2, 3, 4, 5].map(val => `
+                                <div class="flex flex-col items-center">
+                                    <input type="radio" id="${name}_${val}" name="${name}" value="${val}" class="likert-radio hidden" required>
+                                    <label for="${name}_${val}" class="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors duration-200 text-sm md:text-base">
+                                        ${val}
+                                    </label>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-400 mt-2 max-w-xs mx-auto w-full px-1">
+                            <span>น้อย</span>
+                            <span>มาก</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+        }
+
+        function renderAllQuestions() {
+            const renderList = (data, containerId, prefix) => {
+                const container = document.getElementById(containerId);
+                data.forEach((q, index) => {
+                    const itemNumber = index + 1;
+                    const inputName = `${prefix}_${itemNumber}`; // ชื่อ input ยังเป็น q2_1_1 เพื่อความเป็นระเบียบ
+                    container.innerHTML += createLikertQuestion(itemNumber, q, inputName); // แสดงผลเป็น "ข้อที่ 1"
+                });
+            };
+
+            renderList(questions2_1, 'section2_1_container', 'q2_1');
+            renderList(questions2_2, 'section2_2_container', 'q2_2');
+            renderList(questions2_3, 'section2_3_container', 'q2_3');
+            renderList(questions2_4, 'section2_4_container', 'q2_4');
+
+            renderList(questions3_1, 'section3_1_container', 'q3_1');
+            renderList(questions3_2, 'section3_2_container', 'q3_2');
+            renderList(questions3_3, 'section3_3_container', 'q3_3');
+            renderList(questions3_4, 'section3_4_container', 'q3_4');
+        }
+
+        window.onload = renderAllQuestions;
+
+        // --- GOOGLE SHEET CONNECTION ---
+        // 1. นำ Google Apps Script Web App URL มาใส่ตรงนี้
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzAs1qa9ddoXoG0NPHGKR7vbeQ-7yR8_qsAXES7o7ChG5f82RSkQzk08NEsfh0yD__aGw/exec'; 
+
+        function submitForm(e) {
+            e.preventDefault();
+            
+            // แสดง Loading
+            document.getElementById('loadingModal').classList.remove('hidden');
+
+            const form = document.forms['researchForm'];
+            
+            // เก็บข้อมูลจากฟอร์ม
+            // ในกรณีใช้งานจริง ถ้าใช้ fetch() แบบ POST ข้ามโดเมน (CORS) กับ Google Script บางครั้งอาจจะยุ่งยาก
+            // วิธีที่ง่ายที่สุดสำหรับมือใหม่คือใช้ FormData ส่งไป
+            
+            /* เนื่องจากเรายังไม่มี URL จริง โค้ดส่วนนี้จะจำลองการส่ง (Simulate)
+               เมื่อคุณได้ URL มาแล้ว ให้ลบ Comment block นี้ และใช้โค้ด fetch ด้านล่าง
+            */
+
+             //--- โค้ดส่งข้อมูลจริง (เปิดใช้งานเมื่อมี URL) ---
+            fetch(SCRIPT_URL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    document.getElementById('loadingModal').classList.add('hidden');
+                    document.getElementById('successModal').classList.remove('hidden');
+                })
+                .catch(error => {
+                    document.getElementById('loadingModal').classList.add('hidden');
+                    alert('เกิดข้อผิดพลาด! กรุณาลองใหม่อีกครั้ง');
+                    console.error('Error!', error.message);
+                });
+            
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').classList.add('hidden');
+            document.getElementById('researchForm').reset(); 
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
