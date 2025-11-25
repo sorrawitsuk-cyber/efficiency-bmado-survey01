@@ -27,14 +27,25 @@
         }
         /* Loading Overlay */
         .loader {
-            border-top-color: #3498db;
-            -webkit-animation: spinner 1.5s linear infinite;
-            animation: spinner 1.5s linear infinite;
-        }
-        @keyframes spinner {
-            0% { -webkit-transform: rotate(0deg); }
-            100% { -webkit-transform: rotate(360deg); }
-        }
+        border: 4px solid #f3f3f3; /* สีพื้นหลังวงกลม (สีเทาจางๆ) */
+        border-top: 4px solid #2563eb; /* สีตัวหมุน (สีฟ้าเข้ม) */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        -webkit-animation: spin 1s linear infinite; /* Safari */
+        animation: spin 1s linear infinite;
+    }
+
+    /* สั่งให้หมุน 360 องศา */
+    @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -232,9 +243,11 @@
 
     <!-- Loading Modal -->
     <div id="loadingModal" class="fixed inset-0 bg-black bg-opacity-60 hidden flex items-center justify-center z-50">
-        <div class="bg-white p-6 rounded-lg shadow-xl flex flex-col items-center">
-            <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4"></div>
-            <p class="text-gray-700 font-semibold">กำลังบันทึกข้อมูล...</p>
+        <div class="bg-white p-8 rounded-xl shadow-2xl flex flex-col items-center animate-pulse">
+            <div class="loader mb-4"></div>
+            
+            <h3 class="text-lg font-bold text-gray-800">กำลังบันทึกข้อมูล...</h3>
+            <p class="text-sm text-gray-500">กรุณารอสักครู่ ห้ามปิดหน้าต่าง</p>
         </div>
     </div>
 
@@ -400,24 +413,38 @@
         function submitForm(e) {
             e.preventDefault();
             
-            // แสดง Loading
+            // อ้างอิงปุ่มกดเพื่อป้องกันการกดซ้ำ
+            const submitButton = document.getElementById('submitBtn');
+            
+            // 1. แสดง Loading และปิดปุ่มกด
             document.getElementById('loadingModal').classList.remove('hidden');
+            submitButton.disabled = true; // ป้องกันการกดย้ำ
+            submitButton.classList.add('opacity-50', 'cursor-not-allowed'); // เปลี่ยนสีปุ่มให้รู้ว่ากดไม่ได้
 
             const form = document.forms['researchForm'];
             
-            // เก็บข้อมูลจากฟอร์ม (Simulated for now)
-            // หากมี URL จริง ให้ใช้ fetch ตามคอมเมนต์ด้านล่าง
-            
-
+            // 2. ส่งข้อมูลจริง (ลบ setTimeout ออกแล้ว)
              fetch(SCRIPT_URL, { method: 'POST', body: new FormData(form)})
                 .then(response => {
+                    // ซ่อน Loading
                     document.getElementById('loadingModal').classList.add('hidden');
+                    // แสดง Success Modal
                     document.getElementById('successModal').classList.remove('hidden');
+                    
+                    // (Optional) คืนค่าปุ่มกดกรณีเผื่อปิด Modal แล้วอยากทำอะไรต่อ
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
                 })
                 .catch(error => {
+                    // ซ่อน Loading
                     document.getElementById('loadingModal').classList.add('hidden');
+                    // แสดง Error
                     alert('เกิดข้อผิดพลาด! กรุณาลองใหม่อีกครั้ง');
                     console.error('Error!', error.message);
+                    
+                    // คืนค่าปุ่มให้กดใหม่ได้
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
                 });
         }
 
