@@ -408,10 +408,6 @@
             // เก็บข้อมูลจากฟอร์ม (Simulated for now)
             // หากมี URL จริง ให้ใช้ fetch ตามคอมเมนต์ด้านล่าง
             
-            setTimeout(() => {
-                document.getElementById('loadingModal').classList.add('hidden');
-                document.getElementById('successModal').classList.remove('hidden');
-            }, 1500);
 
              fetch(SCRIPT_URL, { method: 'POST', body: new FormData(form)})
                 .then(response => {
