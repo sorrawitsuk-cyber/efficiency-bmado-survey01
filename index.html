@@ -81,8 +81,8 @@
                         <label class="block font-semibold mb-2 text-sm">1. เพศ <span class="text-red-500">*</span></label>
                         <select name="gender" class="w-full border-gray-300 rounded-md shadow-sm border p-2 bg-gray-50" required>
                             <option value="">-- เลือก --</option>
-                            <option value="male">ชาย</option>
-                            <option value="female">หญิง</option>
+                            <option value="ชาย">ชาย</option>
+                            <option value="หญิง">หญิง</option>
                         </select>
                     </div>
 
@@ -91,12 +91,11 @@
                         <label class="block font-semibold mb-2 text-sm">2. อายุ <span class="text-red-500">*</span></label>
                         <select name="age_range" class="w-full border-gray-300 rounded-md shadow-sm border p-2 bg-gray-50" required>
                             <option value="">-- เลือกช่วงอายุ --</option>
-                            <option value="under_20">ต่ำกว่า 20 ปี</option>
-                            <option value="21_30">21 - 30 ปี</option>
-                            <option value="31_40">31 - 40 ปี</option>
-                            <option value="41_50">41 - 50 ปี</option>
-                            <option value="51_60">51 - 60 ปี</option>
-                            <option value="above_60">มากกว่า 60 ปี</option>
+                            <option value="ต่ำกว่า 20 ปี">ต่ำกว่า 20 ปี</option>
+                            <option value="21 - 30 ปี">21 - 30 ปี</option>
+                            <option value="31 - 40 ปี">31 - 40 ปี</option>
+                            <option value="41 - 50 ปี">41 - 50 ปี</option>
+                            <option value="51 - 60 ปี">51 - 60 ปี</option>
                         </select>
                     </div>
 
@@ -105,9 +104,9 @@
                         <label class="block font-semibold mb-2 text-sm">3. ระดับการศึกษาสูงสุด <span class="text-red-500">*</span></label>
                         <select name="education" class="w-full border-gray-300 rounded-md shadow-sm border p-2 bg-gray-50" required>
                             <option value="">-- เลือก --</option>
-                            <option value="below_bachelor">ต่ำกว่าปริญญาตรี</option>
-                            <option value="bachelor">ปริญญาตรี</option>
-                            <option value="above_bachelor">สูงกว่าปริญญาตรี</option>
+                            <option value="ต่ำกว่าปริญญาตรี">ต่ำกว่าปริญญาตรี</option>
+                            <option value="ปริญญาตรี">ปริญญาตรี</option>
+                            <option value="สูงกว่าปริญญาตรี">สูงกว่าปริญญาตรี</option>
                         </select>
                     </div>
 
@@ -116,12 +115,12 @@
                         <label class="block font-semibold mb-2 text-sm">4. ระดับตำแหน่ง <span class="text-red-500">*</span></label>
                         <select name="position_level" class="w-full border-gray-300 rounded-md shadow-sm border p-2 bg-gray-50" required>
                             <option value="">-- เลือก --</option>
-                            <option value="operational">ปฏิบัติงาน</option>
-                            <option value="practitioner">ปฏิบัติการ</option>
-                            <option value="experienced">ชำนาญงาน</option>
-                            <option value="professional">ชำนาญการ</option>
-                            <option value="senior">อาวุโส</option>
-                            <option value="senior_professional">ชำนาญการพิเศษ</option>
+                            <option value="ปฏิบัติงาน">ปฏิบัติงาน</option>
+                            <option value="ปฏิบัติการ">ปฏิบัติการ</option>
+                            <option value="ชำนาญงาน">ชำนาญงาน</option>
+                            <option value="ชำนาญการ">ชำนาญการ</option>
+                            <option value="อาวุโส">อาวุโส</option>
+                            <option value="ชำนาญการพิเศษ">ชำนาญการพิเศษ</option>
                         </select>
                     </div>
 
@@ -130,11 +129,11 @@
                         <label class="block font-semibold mb-2 text-sm">5. อายุราชการ/ประสบการณ์ <span class="text-red-500">*</span></label>
                         <select name="experience_years" class="w-full border-gray-300 rounded-md shadow-sm border p-2 bg-gray-50" required>
                             <option value="">-- เลือก --</option>
-                            <option value="less_5">น้อยกว่า 5 ปี</option>
-                            <option value="5_10">5 - 10 ปี</option>
-                            <option value="11_15">11 - 15 ปี</option>
-                            <option value="16_20">16 - 20 ปี</option>
-                            <option value="more_20">มากกว่า 20 ปี</option>
+                            <option value="น้อยกว่า 5 ปี">น้อยกว่า 5 ปี</option>
+                            <option value="5 - 10 ปี">5 - 10 ปี</option>
+                            <option value="11 - 15 ปี">11 - 15 ปี</option>
+                            <option value="16 - 20 ปี">16 - 20 ปี</option>
+                            <option value="มากกว่า 20 ปี">มากกว่า 20 ปี</option>
                         </select>
                     </div>
                 </div>
@@ -145,21 +144,21 @@
                     <p class="text-xs text-gray-500 mb-3">(ใช้เพื่อจำแนกกลุ่มบทบาทตามกรอบทักษะดิจิทัล)</p>
                     <div class="space-y-3 text-sm">
                         <label class="flex items-start space-x-2 cursor-pointer hover:bg-blue-100 p-2 rounded transition">
-                            <input type="radio" name="job_role" value="technologist" class="mt-1 form-radio text-blue-600" required> 
+                            <input type="radio" name="job_role" value="สายงานด้านเทคโนโลยี (Technologist)" class="mt-1 form-radio text-blue-600" required> 
                             <div>
                                 <span class="font-bold">1. สายงานด้านเทคโนโลยี (Technologist)</span><br>
                                 <span class="text-gray-600 text-xs">(นักวิชาการคอมพิวเตอร์ / เจ้าหน้าที่ระบบ)</span>
                             </div>
                         </label>
                         <label class="flex items-start space-x-2 cursor-pointer hover:bg-blue-100 p-2 rounded transition">
-                            <input type="radio" name="job_role" value="academic" class="mt-1 form-radio text-blue-600"> 
+                            <input type="radio" name="job_role" value="สายงานด้านนโยบายและวิชาการ (Academic)" class="mt-1 form-radio text-blue-600"> 
                             <div>
                                 <span class="font-bold">2. สายงานด้านนโยบายและวิชาการ (Academic)</span><br>
                                 <span class="text-gray-600 text-xs">(นักวิเคราะห์นโยบายและแผน / นิติกร / นักวิชาการแผนที่)</span>
                             </div>
                         </label>
                         <label class="flex items-start space-x-2 cursor-pointer hover:bg-blue-100 p-2 rounded transition">
-                            <input type="radio" name="job_role" value="support" class="mt-1 form-radio text-blue-600"> 
+                            <input type="radio" name="job_role" value="สายงานด้านสนับสนุนและอื่นๆ (Others)" class="mt-1 form-radio text-blue-600"> 
                             <div>
                                 <span class="font-bold">3. สายงานด้านสนับสนุนและอื่นๆ (Others)</span><br>
                                 <span class="text-gray-600 text-xs">(นักจัดการงานทั่วไป / นักทรัพยากรบุคคล / เจ้าพนักงานธุรการ / เจ้าพนักงานพัสดุ / การเงินและบัญชี / โสตทัศนศึกษา / นายช่างไฟฟ้า)</span>
