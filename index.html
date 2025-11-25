@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -43,7 +43,7 @@
     <header class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4 py-4">
             <h1 class="text-xl md:text-2xl font-bold">แบบสอบถามงานวิจัย</h1>
-            <p class="text-sm md:text-base text-blue-200">ประสิทธิภาพในการปฏิบัติงานด้านดิจิทัลของข้าราชการสำนักดิจิทัลกรุงเทพมหานคร</p>
+            <p class="text-sm md:text-base text-blue-200">ปัจจัยที่ส่งผลต่อประสิทธิภาพในการปฏิบัติงานด้านดิจิทัลของสำนักดิจิทัลกรุงเทพมหานคร</p>
         </div>
     </header>
 
@@ -57,11 +57,11 @@
 
         <form id="researchForm" name="researchForm" onsubmit="submitForm(event)">
             
-            <!-- ส่วนที่ 1: ข้อมูลส่วนบุคคล -->
+            <!-- ส่วนที่ 1: คุณลักษณะส่วนบุคคล -->
             <section class="bg-white rounded-lg shadow-sm p-6 mb-8">
                 <h2 class="text-xl font-bold mb-6 pb-2 border-b text-gray-700 flex items-center">
                     <span class="bg-blue-100 text-blue-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">ส่วนที่ 1</span>
-                    ข้อมูลส่วนบุคคล
+                    คุณลักษณะส่วนบุคคล <span class="text-red-500 ml-1">*</span>
                 </h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -102,8 +102,8 @@
 
                      <!-- 4. ระดับตำแหน่ง -->
                      <div>
-                        <label class="block font-semibold mb-2 text-sm">4. ระดับตำแหน่ง (ถ้ามี)</label>
-                        <select name="position_level" class="w-full border-gray-300 rounded-md shadow-sm border p-2 bg-gray-50">
+                        <label class="block font-semibold mb-2 text-sm">4. ระดับตำแหน่ง <span class="text-red-500">*</span></label>
+                        <select name="position_level" class="w-full border-gray-300 rounded-md shadow-sm border p-2 bg-gray-50" required>
                             <option value="">-- เลือก --</option>
                             <option value="operational">ปฏิบัติงาน</option>
                             <option value="practitioner">ปฏิบัติการ</option>
@@ -111,7 +111,6 @@
                             <option value="professional">ชำนาญการ</option>
                             <option value="senior">อาวุโส</option>
                             <option value="senior_professional">ชำนาญการพิเศษ</option>
-                            <option value="other">อื่นๆ</option>
                         </select>
                     </div>
 
@@ -137,15 +136,15 @@
                         <label class="flex items-start space-x-2 cursor-pointer hover:bg-blue-100 p-2 rounded transition">
                             <input type="radio" name="job_role" value="technologist" class="mt-1 form-radio text-blue-600" required> 
                             <div>
-                                <span class="font-bold">1. สายงานด้านเฉพาะเทคโนโลยี (Technologist)</span><br>
-                                <span class="text-gray-600 text-xs">(นักวิชาการคอมพิวเตอร์ เจ้าหน้าที่ระบบ)</span>
+                                <span class="font-bold">1. สายงานด้านเทคโนโลยี (Technologist)</span><br>
+                                <span class="text-gray-600 text-xs">(นักวิชาการคอมพิวเตอร์ / เจ้าหน้าที่ระบบ)</span>
                             </div>
                         </label>
                         <label class="flex items-start space-x-2 cursor-pointer hover:bg-blue-100 p-2 rounded transition">
                             <input type="radio" name="job_role" value="academic" class="mt-1 form-radio text-blue-600"> 
                             <div>
                                 <span class="font-bold">2. สายงานด้านนโยบายและวิชาการ (Academic)</span><br>
-                                <span class="text-gray-600 text-xs">(นักวิเคราะห์นโยบายและแผน นิติกร นักวิชาการแผนที่)</span>
+                                <span class="text-gray-600 text-xs">(นักวิเคราะห์นโยบายและแผน / นิติกร / นักวิชาการแผนที่)</span>
                             </div>
                         </label>
                         <label class="flex items-start space-x-2 cursor-pointer hover:bg-blue-100 p-2 rounded transition">
@@ -164,10 +163,10 @@
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b pb-4">
                     <h2 class="text-xl font-bold text-gray-700 flex items-center">
                         <span class="bg-blue-100 text-blue-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">ส่วนที่ 2</span>
-                        ทักษะด้านดิจิทัลที่จำเป็น
+                        ทักษะด้านดิจิทัลที่จำเป็น <span class="text-red-500 ml-1">*</span>
                     </h2>
-                    <div class="text-xs text-gray-500 mt-2 md:mt-0 bg-gray-100 px-3 py-1 rounded-full">
-                        5 = มากที่สุด | 1 = น้อยที่สุด
+                    <div class="text-xs text-gray-500 mt-2 md:mt-0 bg-gray-100 px-3 py-1 rounded-full text-center">
+                         1 = น้อยที่สุด | 2 = น้อย | 3 = ปานกลาง | 4 = มาก | 5 = มากที่สุด
                     </div>
                 </div>
 
@@ -189,10 +188,10 @@
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b pb-4">
                     <h2 class="text-xl font-bold text-gray-700 flex items-center">
                         <span class="bg-blue-100 text-blue-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">ส่วนที่ 3</span>
-                        ประสิทธิภาพการปฏิบัติงาน
+                        ประสิทธิภาพการปฏิบัติงาน <span class="text-red-500 ml-1">*</span>
                     </h2>
-                    <div class="text-xs text-gray-500 mt-2 md:mt-0 bg-gray-100 px-3 py-1 rounded-full">
-                        5 = เห็นด้วยมากที่สุด | 1 = เห็นด้วยน้อยที่สุด
+                    <div class="text-xs text-gray-500 mt-2 md:mt-0 bg-gray-100 px-3 py-1 rounded-full text-center">
+                        1 = เห็นด้วยน้อยที่สุด | 2 = น้อย | 3 = ปานกลาง | 4 = มาก | 5 = เห็นด้วยมากที่สุด
                     </div>
                 </div>
 
@@ -335,13 +334,18 @@
 
         // --- FUNCTION SECTION ---
 
-        // ปรับปรุง: ให้แสดงเลขข้อเป็นจำนวนเต็ม (เช่น ข้อที่ 1, 2) แต่ input name ยังคง structure เดิมเพื่อไม่งงใน database
+        // ฟังก์ชันสร้างคำถาม Likert (แก้ไขตามคำขอ)
+        // - ลบเครื่องหมายดอกจันออกจากข้อย่อย
+        // - เปลี่ยนคำกำกับใต้เลข 1 และ 5
         function createLikertQuestion(itemNumber, text, name) {
             return `
             <div class="mb-6 pb-4 border-b border-gray-100 last:border-0 hover:bg-gray-50 p-2 rounded transition">
                 <div class="flex flex-col md:flex-row md:items-start justify-between">
                     <div class="md:w-3/5 pr-4 mb-3 md:mb-0">
-                         <span class="font-bold text-gray-500 text-sm block mb-1">ข้อที่ ${itemNumber}</span>
+                         <!-- ลบเครื่องหมายดอกจันออกจากตรงนี้แล้ว -->
+                         <span class="font-bold text-gray-500 text-sm block mb-1">
+                            ข้อที่ ${itemNumber}
+                         </span>
                          <p class="text-gray-800 text-sm md:text-base leading-relaxed">${text}</p>
                     </div>
                     
@@ -357,8 +361,8 @@
                             `).join('')}
                         </div>
                         <div class="flex justify-between text-xs text-gray-400 mt-2 max-w-xs mx-auto w-full px-1">
-                            <span>น้อย</span>
-                            <span>มาก</span>
+                            <span>น้อยที่สุด</span>
+                            <span>มากที่สุด</span>
                         </div>
                     </div>
                 </div>
@@ -371,8 +375,8 @@
                 const container = document.getElementById(containerId);
                 data.forEach((q, index) => {
                     const itemNumber = index + 1;
-                    const inputName = `${prefix}_${itemNumber}`; // ชื่อ input ยังเป็น q2_1_1 เพื่อความเป็นระเบียบ
-                    container.innerHTML += createLikertQuestion(itemNumber, q, inputName); // แสดงผลเป็น "ข้อที่ 1"
+                    const inputName = `${prefix}_${itemNumber}`; 
+                    container.innerHTML += createLikertQuestion(itemNumber, q, inputName); 
                 });
             };
 
@@ -401,16 +405,15 @@
 
             const form = document.forms['researchForm'];
             
-            // เก็บข้อมูลจากฟอร์ม
-            // ในกรณีใช้งานจริง ถ้าใช้ fetch() แบบ POST ข้ามโดเมน (CORS) กับ Google Script บางครั้งอาจจะยุ่งยาก
-            // วิธีที่ง่ายที่สุดสำหรับมือใหม่คือใช้ FormData ส่งไป
+            // เก็บข้อมูลจากฟอร์ม (Simulated for now)
+            // หากมี URL จริง ให้ใช้ fetch ตามคอมเมนต์ด้านล่าง
             
-            /* เนื่องจากเรายังไม่มี URL จริง โค้ดส่วนนี้จะจำลองการส่ง (Simulate)
-               เมื่อคุณได้ URL มาแล้ว ให้ลบ Comment block นี้ และใช้โค้ด fetch ด้านล่าง
-            */
+            setTimeout(() => {
+                document.getElementById('loadingModal').classList.add('hidden');
+                document.getElementById('successModal').classList.remove('hidden');
+            }, 1500);
 
-             //--- โค้ดส่งข้อมูลจริง (เปิดใช้งานเมื่อมี URL) ---
-            fetch(SCRIPT_URL, { method: 'POST', body: new FormData(form)})
+             fetch(SCRIPT_URL, { method: 'POST', body: new FormData(form)})
                 .then(response => {
                     document.getElementById('loadingModal').classList.add('hidden');
                     document.getElementById('successModal').classList.remove('hidden');
@@ -420,7 +423,6 @@
                     alert('เกิดข้อผิดพลาด! กรุณาลองใหม่อีกครั้ง');
                     console.error('Error!', error.message);
                 });
-            
         }
 
         function closeModal() {
